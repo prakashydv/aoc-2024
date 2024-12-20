@@ -29,6 +29,9 @@ def getStrGrid(filename):
 def zilchedGrid(mp, z):
 	return [[ z for _ in range(len(mp[0]))] for _ in range(len(mp))]
 
+def getEmptyGrid(h, w, z):
+	return [[ z for _ in range(w)] for _ in range(h)]
+
 step_i = [-1, 0, 1, 0]
 step_j = [0, 1, 0, -1]
 
