@@ -1,5 +1,6 @@
 f = open("input.18.txt", "r")
 [W, H] = [71,71]
+BOMBS = 1024
 bombs = []
 for pair in f:
     pair = pair.split(",")
@@ -13,7 +14,7 @@ import utils as u
 
 grid = u.getEmptyGrid(W, H, 0)
 timetoexplode = -1
-for [x,y] in bombs:
+for [x,y] in bombs[:BOMBS]:
     grid[y][x] = timetoexplode
     timetoexplode -= 1
 grid[0][0] = -1
@@ -29,10 +30,10 @@ while len(q) != 0:
             ii = x + u.step_i[d]
             jj = y + u.step_j[d]
             if ii >= 0 and jj >= 0 and ii < W and jj < H:
-                if (grid[ii][jj] < 0 and dist < -grid[ii][jj]):
-                    grid[ii][jj] = -dist
-                    nbr.append([ii,jj,dist+1])
-                elif (grid[ii][jj] == 0 or grid[ii][jj] > dist+1):
+                # if (grid[ii][jj] < 0 and dist < -grid[ii][jj]):
+                #     grid[ii][jj] = -dist
+                #     nbr.append([ii,jj,dist+1])
+                if (grid[ii][jj] == 0 or grid[ii][jj] > dist+1):
                     grid[ii][jj] = dist + 1
                     nbr.append([ii,jj,dist+1])
     for n in nbr:
